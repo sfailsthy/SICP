@@ -1,4 +1,3 @@
-#lang scheme
 (define (carmichael-test n)
   (test-iter 1 n))
 

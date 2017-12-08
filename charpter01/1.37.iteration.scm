@@ -1,4 +1,3 @@
-#lang scheme
 (define (cont-frac n d k)
   (define (iter i result)
     (if (= i 0)

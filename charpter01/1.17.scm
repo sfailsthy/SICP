@@ -1,4 +1,3 @@
-#lang scheme
 (define (double n)
   (+ n n))
 (define (halve n)

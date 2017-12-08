@@ -1,4 +1,3 @@
-#lang scheme
 (define (repeated f n)
   (if (= n 1)
       f

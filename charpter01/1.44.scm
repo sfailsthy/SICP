@@ -1,4 +1,3 @@
-#lang scheme
 (define dx 0.00001)
 
 (define (smooth f)

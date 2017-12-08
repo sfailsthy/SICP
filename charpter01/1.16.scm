@@ -1,4 +1,3 @@
-#lang scheme
 (define (fast-expt b n)
   (expt-iter b n 1))
 

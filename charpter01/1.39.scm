@@ -1,4 +1,3 @@
-#lang scheme
 (define (tan-cf x k)
   (define (n i)
     (if (= i 1)

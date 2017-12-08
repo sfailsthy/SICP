@@ -1,4 +1,3 @@
-#lang scheme
 (define (fib n)
     (fib-iter 1 0 0 1 n))
 

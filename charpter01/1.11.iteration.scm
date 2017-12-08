@@ -1,4 +1,3 @@
-#lang scheme
 (define (f n)
   (f-iter 2 1 0 n))
 

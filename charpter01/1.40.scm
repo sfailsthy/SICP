@@ -1,4 +1,3 @@
-#lang scheme
 (define (cubic a b c)
   (lambda (x)
     (+ (* x x x)

@@ -1,4 +1,3 @@
-#lang scheme
 (define (multi a b)
   (multi-iter a b 0))
 

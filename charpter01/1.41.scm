@@ -1,4 +1,3 @@
-#lang scheme
 (define (double f)
   (lambda (x)
     (f (f x))))
