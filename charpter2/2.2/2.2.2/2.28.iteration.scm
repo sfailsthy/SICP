@@ -1,0 +1,11 @@
+(define (fringe tree)
+  (define (iter items result)
+    (cond ((null? items)
+           result)
+          ((not (pair? items))
+           (list items))
+          (else
+           (iter (cdr items)
+                 (append (iter (car items) '())
+                         result)))))
+  (reverse (iter tree '())))
