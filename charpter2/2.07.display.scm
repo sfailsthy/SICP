@@ -1,0 +1,10 @@
+(load "2.07.scm")
+
+(define (display-interval name i)
+  (newline)
+  (display name)
+  (display ": [") 
+  (display (lower-bound i)) 
+  (display ",") 
+  (display (upper-bound i)) 
+  (display "]")) 

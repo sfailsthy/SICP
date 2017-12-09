@@ -1,0 +1,5 @@
+(define (perimeter-rectangle r)
+  (let ((length (length-of-rectangle r))
+        (width (width-of-rectangle r)))
+    (* (+ length width)
+       2)))
