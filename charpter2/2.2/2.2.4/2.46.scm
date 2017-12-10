@@ -1,0 +1,30 @@
+(define (make-vect x y)
+  (cons x y))
+
+(define (xcor-vect vect)
+  (car vect))
+
+(define (ycor-vect vect)
+  (cdr vect))
+
+(define (add-vect vec1 vec2)
+  (let ((x1 (xcor-vect vec1))
+        (y1 (ycor-vect vec1))
+        (x2 (xcor-vect vec2))
+        (y2 (ycor-vect vec2)))
+    (make-vect (+ x1 x2)
+               (+ y1 y2))))
+
+(define (sub-vect vec1 vec2)
+  (let ((x1 (xcor-vect vec1))
+        (y1 (ycor-vect vec1))
+        (x2 (xcor-vect vec2))
+        (y2 (ycor-vect vec2)))
+    (make-vect (- x1 x2)
+               (- y1 y2))))
+
+(define (scale-vect s vec)
+  (let ((x (xcor-vect vec))
+        (y (ycor-vect vec)))
+    (make-vect (* s x)
+               (* s y))))
