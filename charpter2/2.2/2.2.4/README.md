@@ -1,2 +1,2 @@
--[A Picture Language (from SICP 2.2.4)](http://www.biwascheme.org/demo/pictlang.html)
--[http://sicp.readthedocs.io/en/latest/chp2/49.html](http://sicp.readthedocs.io/en/latest/chp2/49.html)
+- [A Picture Language (from SICP 2.2.4)](http://www.biwascheme.org/demo/pictlang.html)
+- [http://sicp.readthedocs.io/en/latest/chp2/49.html](http://sicp.readthedocs.io/en/latest/chp2/49.html)
