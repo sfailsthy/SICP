@@ -24,3 +24,6 @@
                         (magnitude z2))
                      (- (angle z1)
                         (angle z2))))
+
+(install-rectangular-package)
+(install-polar-package)
