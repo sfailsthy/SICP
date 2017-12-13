@@ -14,33 +14,40 @@
   
   ;internal procedures
   (define (add-complex z1 z2)
-    (make-from-real-imag (+ (real-part z1)
+    (make-from-real-imag (add (real-part z1)
                             (real-part z2))
-                         (+ (imag-part z1)
+                         (add (imag-part z1)
                             (imag-part z2))))
 
   (define (sub-complex z1 z2)
-    (make-from-real-imag (- (real-part z1)
+    (make-from-real-imag (sub (real-part z1)
                             (real-part z2))
-                         (- (imag-part z1)
+                         (sub (imag-part z1)
                             (imag-part z2))))
 
   (define (mul-complex z1 z2)
-    (make-from-mag-ang (* (magnitude z1)
+    (make-from-mag-ang (mul (magnitude z1)
                           (magnitude z2))
-                       (+ (angle z1)
+                       (add (angle z1)
                           (angle z2))))
 
   (define (div-complex z1 z2)
-    (make-from-mag-ang (/ (magnitude z1)
+    (make-from-mag-ang (div (magnitude z1)
                           (magnitude z2))
-                       (- (angle z1)
+                       (sub (angle z1)
                           (angle z2))))
 
   ;interface to the rest of system
   (define (tag z)
     (attach-tag 'complex z))
 
+  (put 'project '(complex)
+       (lambda (z)
+         (let ((scheme-rat (rationalize (inexact->exact (real-part z))
+                                        1/100)))
+           (make-rational (numerator scheme-rat)
+                          (denominator scheme-rat)))))
+  
   (put 'add '(complex complex)
        (lambda (z1 z2)
          (tag (add-complex z1 z2))))

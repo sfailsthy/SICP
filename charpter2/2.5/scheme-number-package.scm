@@ -5,6 +5,13 @@
   (define (tag x)
     (attach-tag 'scheme-number x))
 
+  (define (integer->rational n)
+    (make-rational n 1))
+
+  (put 'raise '(scheme-number)
+       (lambda (i)
+         (integer->rational i)))
+  
   (define (reduce-integers n d)
     (let ((g (gcd n d)))
       (list (/ n g)

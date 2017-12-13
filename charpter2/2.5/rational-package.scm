@@ -76,6 +76,19 @@
        (lambda (x)
          (make-rational (- (numer x))
                         (denom x))))
+
+  (define (rational->complex r)
+    (make-complex-from-real-imag (exact->inexact (/ (numer r)
+                                                    (denom r)))
+                                 0))
+
+  (put 'raise '(rational)
+       (lambda (r) (rational->complex r)))
+
+  (put 'project '(rational)
+       (lambda (r)
+         (make-scheme-number (floor (/ (numer r)
+                                       (denom r))))))
   
   (put 'make 'rational
        (lambda (n d)
