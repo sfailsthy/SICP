@@ -3,7 +3,6 @@
 (load "scheme-number-package.scm")
 (load "rational-package.scm")
 (load "complex-package.scm")
-(load "polynomial-package.scm")
 
 (define (level type)
   (cond ((eq? type 'scheme-number)
@@ -121,4 +120,3 @@
 (install-complex-package)
 (install-rational-package)
 (install-scheme-number-package)
-(install-polynomial-package)
