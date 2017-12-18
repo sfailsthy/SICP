@@ -1,0 +1,40 @@
+(load "constraint-interface.scm")
+(load "multiplier.scm")
+(load "adder.scm")
+(load "connector.scm")
+(load "constant.scm")
+(load "probe.scm")
+
+(define (c+ x y)
+  (let ((sum (make-connector)))
+    (adder x y sum)
+    sum))
+
+(define (c- x y)
+  (let ((diff (make-connector)))
+    (adder y diff x)
+    diff))
+
+(define (c* x y)
+  (let ((product (make-connector)))
+    (multiplier x y product)
+    product))
+
+(define (c/ p q)
+  (let ((r (make-connector)))
+    (multiplier q r p)
+    r))
+
+(define (cv value)
+  (let ((connector (make-connector)))
+    (constant value connector)
+    connector))
+
+(define (celsius-fahrenheit-converter x)
+  (c+ (c* (c/ (cv 9)
+              (cv 5))
+          x)
+      (cv 32)))
+
+(define C (make-connector))
+(define F (celsius-fahrenheit-converter C))
