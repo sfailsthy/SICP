@@ -8,7 +8,30 @@
   (list (list 'car car)
         (list 'cdr cdr)
         (list 'cons cons)
-        (list 'null? null?)))
+        (list 'null? null?)
+
+        (list '+ +)
+        (list '- -)
+        (list '* *)
+        (list '/ /)
+        (list 'abs abs)
+
+        (list '= =)
+        (list '< <)
+        (list '<= <=)
+        (list '> >)
+        (list '>= >=)
+
+        (list 'sqrt sqrt)
+        (list 'square square)
+        (list 'expt expt)
+
+        (list 'sin sin)
+        (list 'cos cos)
+        (list 'tan tan)
+        (list 'atan atan)
+        ; other primitive procedures
+        ))
 
 (define (primitive-procedure-names)
   (map car primitive-procedures))

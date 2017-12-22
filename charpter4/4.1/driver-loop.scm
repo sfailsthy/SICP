@@ -21,9 +21,9 @@
 (load "tagged-list.scm")
 (load "setup-environment.scm")
 (load "variable.scm")
-(load "4.4.a.scm")
-(load "4.6.scm")
-(load "4.7.scm")
+(load "4.04.a.scm")
+(load "4.06.scm")
+(load "4.07.scm")
 
 (define input-prompt ";;; M-Eval input:")
 (define output-prompt ";;; M-Eval output:")
