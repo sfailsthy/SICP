@@ -24,6 +24,7 @@
 (load "4.04.a.scm")
 (load "4.06.scm")
 (load "4.07.scm")
+(load "../4.2/4.26.scm")
 
 (define input-prompt ";;; M-Eval input:")
 (define output-prompt ";;; M-Eval output:")

@@ -33,6 +33,9 @@
 
         (list 'assoc assoc)
         (list 'real-time-clock real-time-clock)
+        (list 'for-each for-each)
+        (list 'newline newline)
+        (list 'display display)
         ; other primitive procedures
         ))
 

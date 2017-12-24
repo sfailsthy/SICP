@@ -30,8 +30,9 @@
         ((unless? exp)
          (eval (unless->if exp) env))
         ((application? exp)
-         (applyn (eval (operator exp) env)
-                (list-of-values (operands exp) env)))
+         (applyn (actual-value (operator exp) env)
+                 (operands exp)
+                 env))
         (else
          (error "Unknown expression type -- EVAL"
                 exp))))
