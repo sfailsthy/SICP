@@ -32,7 +32,6 @@
 (load "../4.1/setup-environment.scm")
 (load "../4.1/tagged-list.scm")
 (load "../4.1/variable.scm")
-(load "../4.1/4.04.a.scm")
 (load "../4.1/4.06.scm")
 (load "../4.1/4.07.scm")
 (load "../4.2/4.26.scm")

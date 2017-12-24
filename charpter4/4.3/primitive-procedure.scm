@@ -1,4 +1,5 @@
 (load "prime.scm")
+(load "distinct.scm")
 
 (define (primitive-procedure? proc)
   (tagged-list? proc 'primitive))
@@ -11,6 +12,7 @@
         (list 'cdr cdr)
         (list 'cons cons)
         (list 'null? null?)
+        (list 'list list)
 
         (list '+ +)
         (list '- -)
@@ -23,6 +25,11 @@
         (list '<= <=)
         (list '> >)
         (list '>= >=)
+        (list 'eq? eq?)
+
+        (list 'and (lambda (a b) (and a b)))
+        (list 'or (lambda (a b) (or a b)))
+        (list 'xor (lambda (a b) (and (or a b) (not (and a b)))))
 
         (list 'sqrt sqrt)
         (list 'square square)
@@ -40,6 +47,7 @@
         (list 'display display)
 
         (list 'prime? prime?)
+        (list 'distinct? distinct?)
         ; other primitive procedures
         ))
 
