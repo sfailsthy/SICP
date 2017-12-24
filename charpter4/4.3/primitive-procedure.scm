@@ -1,3 +1,5 @@
+(load "prime.scm")
+
 (define (primitive-procedure? proc)
   (tagged-list? proc 'primitive))
 
@@ -36,6 +38,8 @@
         (list 'not not)
         (list 'newline newline)
         (list 'display display)
+
+        (list 'prime? prime?)
         ; other primitive procedures
         ))
 
