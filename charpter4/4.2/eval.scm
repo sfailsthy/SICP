@@ -4,7 +4,7 @@
         ((variable? exp)
          (lookup-variable-value exp env))
         ((quoted? exp)
-         (text-of-quotation exp))
+         (text-of-quotation exp env))
         ((assignment? exp)
          (eval-assignment exp env))
         ((definition? exp)

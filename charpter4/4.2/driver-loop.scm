@@ -28,6 +28,7 @@
 (load "../4.1/4.06.scm")
 (load "../4.1/4.07.scm")
 (load "4.26.scm")
+(load "4.33.scm")
 
 (define input-prompt ";;; L-Eval input:")
 (define output-prompt ";;; L-Eval output:")
@@ -55,7 +56,7 @@
 (define (user-print object)
   (if (compound-procedure? object)
       (display (list 'compound-procedure
-                     (prcedure-parameters object)
+                     (procedure-parameters object)
                      (procedure-body object)
                      '<procedure-env>))
       (display object)))
