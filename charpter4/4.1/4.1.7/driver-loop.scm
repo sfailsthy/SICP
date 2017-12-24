@@ -53,7 +53,7 @@
 (define (user-print object)
   (if (compound-procedure? object)
       (display (list 'compound-procedure
-                     (prcedure-parameters object)
+                     (procedure-parameters object)
                      (procedure-body object)
                      '<procedure-env>))
       (display object)))
