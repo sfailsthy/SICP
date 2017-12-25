@@ -1,6 +1,24 @@
 (load "prime.scm")
 (load "distinct.scm")
 
+(define (and a . b)
+  (let((l (cons a b)))
+    (let ((s (filter (lambda (x) x)
+                   l)))
+      (if (= (length l)
+             (length s))
+          #t
+          #f))))
+
+(define (or a . b)
+  (let ((l (cons a b)))
+    (let ((s (filter (lambda (x) x)
+                     l)))
+      (if (>= (length s)
+             1)
+          #t
+          #f))))
+
 (define (primitive-procedure? proc)
   (tagged-list? proc 'primitive))
 
@@ -11,8 +29,13 @@
   (list (list 'car car)
         (list 'cdr cdr)
         (list 'cons cons)
+
         (list 'null? null?)
         (list 'list list)
+        (list 'length length)
+        (list 'append append)
+        (list 'list-ref list-ref)
+        (list 'memq memq)
 
         (list '+ +)
         (list '- -)
@@ -27,8 +50,8 @@
         (list '>= >=)
         (list 'eq? eq?)
 
-        (list 'and (lambda (a b) (and a b)))
-        (list 'or (lambda (a b) (or a b)))
+        (list 'and and)
+        (list 'or or)
         (list 'xor (lambda (a b) (and (or a b) (not (and a b)))))
 
         (list 'sqrt sqrt)
