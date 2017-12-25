@@ -43,6 +43,9 @@
         (list '/ /)
         (list 'abs abs)
 
+        (list 'even? even?)
+        (list 'odd? odd?)
+        
         (list '= =)
         (list '< <)
         (list '<= <=)

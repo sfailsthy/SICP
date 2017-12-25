@@ -32,10 +32,14 @@
 (load "../4.1/setup-environment.scm")
 (load "../4.1/tagged-list.scm")
 (load "../4.1/variable.scm")
-(load "../4.1/4.06.scm")
-(load "../4.1/4.07.scm")
+(load "../4.1/4.06.scm") ;let
+(load "../4.1/4.07.scm") ;let*
 (load "../4.2/4.26.scm")
 (load "prime.scm")
+(load "4.50.scm") ;ramb
+(load "4.51.scm") ;permanent-set!
+(load "4.52.scm") ;if-fail
+(load "4.54.scm") ;require
 
 (define input-prompt ";;; Amb-Eval input:")
 (define output-prompt ";;; Amb-Eval value:")
