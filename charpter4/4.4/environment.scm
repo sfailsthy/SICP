@@ -1,6 +1,10 @@
+(load "expression.scm")
+
+;; assertions
 (define THE-ASSERTIONS the-empty-stream)
 
 (define (fetch-assertions pattern frame)
+  ;; fetch assertions with or without index
   (if (use-index? pattern)
       (get-indexed-assertions pattern)
       (get-all-assertions)))
@@ -8,14 +12,13 @@
 (define (get-all-assertions) THE-ASSERTIONS)
 
 (define (get-indexed-assertions pattern)
-  (get-stream (index-key-of pattern) 'assertion-frame))
+  (get-stream (index-key-of pattern) 'assertion-stream))
 
 (define (get-stream key1 key2)
   (let ((s (get key1 key2)))
-    (if s
-        s
-        the-empty-stream)))
+    (if s s the-empty-stream)))
 
+;; rules
 (define THE-RULES the-empty-stream)
 
 (define (fetch-rules pattern frame)
@@ -26,13 +29,22 @@
 (define (get-all-rules) THE-RULES)
 
 (define (get-indexed-rules pattern)
-  (stream-append (get-stream (index-key-of pattern) 'rule-stream)
-                 (get-stream '? 'rule-stream)))
+  (stream-append
+   (get-stream (index-key-of pattern) 'rule-stream)
+   (get-stream '? 'rule-stream)))
 
+;; operation
 (define (add-rule-or-assertion! assertion)
   (if (rule? assertion)
       (add-rule! assertion)
       (add-assertion! assertion)))
+
+(define (add-assertion! assertion)
+  (store-assertion-in-index assertion)    ; store it with index
+  (let ((old-assertions THE-ASSERTIONS))  ; store it simply
+    (set! THE-ASSERTIONS
+          (cons-stream assertion old-assertions))
+    'ok))
 
 (define (add-rule! rule)
   (store-rule-in-index rule)
@@ -40,16 +52,14 @@
     (set! THE-RULES (cons-stream rule old-rules))
     'ok))
 
-(define (add-assertion! assertion)
-  (store-assertion-in-index assertion)
-  (let ((old-assertions THE-ASSERTIONS))
-    (set! THE-ASSERTIONS (cons-stream assertion old-assertions))
-    'ok))
-
+;; store assertions and rules in the method of stream
 (define (store-assertion-in-index assertion)
+  ;; the assertions with same index will be stored in
+  ;; the same place in operation table (table.rkt).
   (if (indexable? assertion)
-      (let ((key (index-kye-of assertion)))
-        (let ((current-assertion-stream (get-stream key 'assertion-stream)))
+      (let ((key (index-key-of assertion)))
+        (let ((current-assertion-stream
+               (get-stream key 'assertion-stream)))
           (put key
                'assertion-stream
                (cons-stream assertion
@@ -59,7 +69,8 @@
   (let ((pattern (conclusion rule)))
     (if (indexable? pattern)
         (let ((key (index-key-of pattern)))
-          (let ((current-rule-stream (get-stream key 'rule-stream)))
+          (let ((current-rule-stream
+                 (get-stream key 'rule-stream)))
             (put key
                  'rule-stream
                  (cons-stream rule
@@ -71,9 +82,7 @@
 
 (define (index-key-of pat)
   (let ((key (car pat)))
-    (if (var? key)
-        '?
-        key)))
+    (if (var? key) '? key)))
 
 (define (use-index? pat)
   (constant-symbol? (car pat)))
