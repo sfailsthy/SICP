@@ -17,6 +17,7 @@
          (error "Unknown instruction type -- ASSEMBLE"
                 inst))))
 
+
 ;;assign
 (define (make-assign inst machine labels operations pc)
   (let ((target (get-register machine
@@ -86,7 +87,8 @@
              (lambda ()
                (set-contents! pc insts))))
           ((register-exp? dest)
-           (let ((reg (get-register machine (register-exp-reg dest))))
+           (let ((reg (get-register machine
+                                    (register-exp-reg dest))))
              (lambda ()
                (set-contents! pc (get-contents reg)))))
           (else
@@ -177,12 +179,16 @@
 (define (label-exp-label exp)
   (cadr exp))
 
+
 ;;
 (define (make-operation-exp exp machine labels operations)
   (let ((op (lookup-prim (operation-exp-op exp)
                          operations))
         (aprocs (map (lambda (e)
-                       (make-primitive-exp e machine labels))
+                       (if (label-exp? e)
+                           (error "CANNOT operate on label -- MAKE-OPERATION-EXP"
+                                  e)
+                           (make-primitive-exp e machine labels)))
                      (operation-exp-operands exp))))
     (lambda ()
       (apply op (map (lambda (p)

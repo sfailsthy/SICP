@@ -1,8 +1,10 @@
 (load "generate-execute-procedures.scm")
+; (load "5.12.scm")
 
 (define (assemble controller-text machine)
   (extract-labels controller-text
                   (lambda (insts labels)
+                    ; (update-data! insts machine) ;;5.12
                     (update-insts! insts labels machine)
                     insts)))
 
@@ -13,10 +15,13 @@
                       (lambda (insts labels)
                         (let ((next-inst (car text)))
                           (if (symbol? next-inst)
-                              (receive insts
-                                       (cons (make-label-entry next-inst
-                                                               insts)
-                                             labels))
+                              (if (assoc next-inst labels)
+                                  (error "Multiple used label: "
+                                         next-inst)
+                                  (receive insts
+                                           (cons (make-label-entry next-inst
+                                                                   insts)
+                                                 labels)))
                               (receive (cons (make-instruction next-inst)
                                              insts)
                                        labels)))))))

@@ -12,3 +12,12 @@
                      (assign b (reg t))
                      (goto (label test-b))
                   gcd-done)))
+
+(set-register-contents! gcd-machine 'a 206)
+(set-register-contents! gcd-machine 'b 40)
+(start gcd-machine)
+(display "gcd: ")
+(display (get-register-contents gcd-machine 'a))
+(newline)
+(display "instruction-count: ")
+(display (gcd-machine 'get-instruction-count))
