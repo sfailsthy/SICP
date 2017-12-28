@@ -24,7 +24,6 @@ Structure and Interpretation of Computer Programs
 - charpter 4
   - exercise 4.5
   - exercise 4.8
-  - exercise 4.9
   - exercise 4.10
   - exercise 4.11
   - exercise 4.12
