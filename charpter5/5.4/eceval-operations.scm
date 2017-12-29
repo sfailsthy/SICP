@@ -1,8 +1,13 @@
 (define (prompt-for-input string)
-  (newline) (newline) (display string) (newline))
+  (newline)
+  (newline)
+  (display string)
+  (newline))
 
 (define (announce-output string)
-  (newline) (display string) (newline))
+  (newline)
+  (display string)
+  (newline))
 
 (define (user-print object)
   (cond ((compound-procedure? object)
@@ -17,6 +22,9 @@
 
 (define (last-operand? ops)
     (null? (cdr ops)))
+
+(define (no-more-exps? seq)
+    (null? seq))
 
 (define eceval-operations
   (list (list 'self-evaluating? self-evaluating?)
@@ -45,6 +53,7 @@
         (list 'cond-else-clause? cond-else-clause?)
         (list 'cond-predicate cond-predicate)
         (list 'cond-actions cond-actions)
+        (list 'cond->if cond->if)
         
         (list 'lambda? lambda?)
         (list 'lambda-parameters lambda-parameters)
@@ -52,8 +61,9 @@
         
         (list 'let? let?)
         (list 'let-vars let-vars)
-        (list 'let-vals let-vals)
+        (list 'let-inits let-inits)
         (list 'let-body let-body)
+        (list 'let->combination let->combination)
           
         (list 'begin? begin?)
         (list 'begin-actions begin-actions)
@@ -61,6 +71,7 @@
         (list 'first-exp first-exp)
         (list 'rest-exps rest-exps)
         (list 'sequence->exp sequence->exp)
+        (list 'no-more-exps? no-more-exps?)
           
         (list 'application? application?)
         (list 'operator operator)

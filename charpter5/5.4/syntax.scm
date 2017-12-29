@@ -178,52 +178,23 @@
 (define (make-application proc arguments)
   (cons proc arguments))
 
-;;cond: (cond (<predicate1> <consequent1>)
-;;            ...
-;;            (else <alternative>))
-(define (cond? exp) (tagged-list? exp 'cond))
-(define (cond-clauses exp) (cdr exp))
-(define (cond-else-clause? clause)
-  (eq? (cond-predicate clause) 'else))
-(define (cond-predicate clause) (car clause))
-(define (cond-actions clause) (cdr clause))
-
-(define (cond->if exp)
-  (expand-clauses (cond-clauses exp)))
-
-(define (expand-clauses clauses)
-  (if (null? clauses)
-      'false                          ; no else clause
-      (let ((first (car clauses))
-            (rest (cdr clauses)))
-        (if (cond-else-clause? first)
-            (if (null? rest)
-                (sequence->exp (cond-actions first))
-                (error "ELSE clause isn't last -- COND->IF"
-                       clauses))
-            (make-if (cond-predicate first)
-                     (sequence->exp (cond-actions first))
-                     (expand-clauses rest))))))
-
 ;;let: (let ((<var1> <exp1>) ... (<varn> <expn>))
 ;;       <body>)
 (define (let? exp)
   (tagged-list? exp 'let))
 
-(define (let-bindings exp) (cadr exp))
-(define (let-vars exp) (map car (let-bindings exp)))
-(define (let-vals exp) (map cadr (let-bindings exp)))
+(define (let-vars exp)
+  (map car (cadr exp)))
 
-(define (let-body exp) (cddr exp))
+(define (let-inits exp)
+  (map cadr (cadr exp)))
+
+(define (let-body exp)
+  (cddr exp))
 
 (define (let->combination exp)
-  (let ((vars (let-vars exp)) (vals (let-vals exp)))
-    (make-application (make-lambda vars
-                                   (let-body exp))
-                      vals)))
-
-(define (make-let bindings body)
-  (cons 'let (cons bindings body)))
+  (cons (make-lambda (let-vars exp) (let-body exp))
+        (let-inits exp)))
 
 ;;and: (and <predicate1> <predicate2> ... <predicaten>)
 (define (and? exp)
