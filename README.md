@@ -23,14 +23,23 @@ Structure and Interpretation of Computer Programs
 
 - charpter 4
   - exercise 4.5
-  - exercise 4.8
-  - exercise 4.10
   - exercise 4.11
   - exercise 4.12
   - exercise 4.13
   - 4.1.6 Internal Definitions
   - exercise 4.31
   - exercise 4.34
+  - 4.3.2 Parsing Natural Language
+  - 4.4 Logical Programming
+
+- charpter 5
+  - exercise 5.10
+  - exercise 5.11
+  - exercise 5.12
+  - exercise 5.13
+  - exercise 5.17
+  - exercise 5.19
+
   
 # Reference
 - [SICP解题集](http://sicp.readthedocs.io/en/latest/)
