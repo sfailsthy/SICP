@@ -111,7 +111,7 @@
         (instruction-count 0);5.15
         (instruction-trace-on #f);5.16
         )
-    (let ((the-ops (list (list 'initial-stack
+    (let ((the-ops (list (list 'initialize-stack
                                (lambda () (stack 'initialize)))
                          (list 'print-stack-statistics
                                (lambda () (stack 'print-statistics)))))
