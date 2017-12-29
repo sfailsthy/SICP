@@ -1,7 +1,3 @@
-(load "assembler.scm")
-(load "generate-execute-procedures.scm")
-; (load "5.12.scm")
-
 ;;make-machine
 (define (make-machine register-names ops controller-text)
   (let ((machine (make-new-machine)))

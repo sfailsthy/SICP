@@ -1,3 +1,5 @@
+(load "assembler.scm")
+(load "generate-execute-procedures.scm")
 (load "machine-model.scm")
 
 (define iter-fact
@@ -16,5 +18,8 @@
 
 (set-register-contents! iter-fact 'n 6)
 (start iter-fact)
-(get-register-contents iter-fact 'product)
-                       
+(display "factorial: ")
+(display (get-register-contents iter-fact 'product))
+(newline)
+(display "iter-fact instruction-count: ")
+(display (iter-fact 'get-instruction-count))

@@ -1,4 +1,3 @@
-(load "generate-execute-procedures.scm")
 ; (load "5.12.scm")
 
 (define (assemble controller-text machine)

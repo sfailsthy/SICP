@@ -1,0 +1,8 @@
+(load "5.01.scm")
+(load "5.03.scm")
+(load "5.04.a.scm")
+(load "5.04.b.scm")
+(load "5.13.test.scm")
+(load "fact-recursive.scm")
+(load "fib.scm")
+(load "gcd-machine.scm")

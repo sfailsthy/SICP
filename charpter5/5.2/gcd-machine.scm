@@ -1,3 +1,5 @@
+(load "assembler.scm")
+(load "generate-execute-procedures.scm")
 (load "machine-model.scm")
 
 (define gcd-machine
