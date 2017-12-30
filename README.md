@@ -30,7 +30,10 @@ Structure and Interpretation of Computer Programs
   - exercise 4.31
   - exercise 4.34
   - 4.3.2 Parsing Natural Language
-  - 4.4 Logical Programming
+  - exercise 4.63
+  - exercise 4.67
+  - exercise 4.69
+  - exercise 4.79
 
 - charpter 5
   - exercise 5.10
@@ -45,4 +48,5 @@ Structure and Interpretation of Computer Programs
 - [SICP解题集](http://sicp.readthedocs.io/en/latest/)
 - [sicp-solutions](http://community.schemewiki.org/?sicp-solutions)
 - [Eli Bendersky's website](https://eli.thegreenplace.net/tag/sicp)
+- [collins562/SICP-solutions](https://github.com/collins562/SICP-solutions)
 - [SICP exercises](https://wizardbook.wordpress.com)

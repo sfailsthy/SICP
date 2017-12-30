@@ -77,6 +77,8 @@
 
 ;;;Compound queries
 
+(load "4.75.scm")
+
 (define (conjoin conjuncts frame-stream)
   (if (empty-conjunction? conjuncts)
       frame-stream
@@ -84,6 +86,8 @@
                (qeval (first-conjunct conjuncts)
                       frame-stream))))
 
+; (load "4.76.scm")
+(load "4.77.scm")
 ;;(put 'and 'qeval conjoin)
 
 
@@ -466,6 +470,16 @@
       (eq? (car exp) tag)
       false))
 
+(define (lisp-value? exp)
+  (tagged-list? exp 'lisp-value))
+
+(define (not? exp)
+  (tagged-list? exp 'not))
+
+(define (filter? exp)
+  (or (lisp-value? exp)
+      (not? exp)))
+
 (define (prompt-for-input string)
   (newline) (newline) (display string) (newline))
 
@@ -569,11 +583,12 @@
   (let ((operation-table (make-table)))
     (set! get (operation-table 'lookup-proc))
     (set! put (operation-table 'insert-proc!)))
-  (put 'and 'qeval conjoin)
+  (put 'and 'qeval new-conjoin)
   (put 'or 'qeval disjoin)
   (put 'not 'qeval negate)
   (put 'lisp-value 'qeval lisp-value)
   (put 'always-true 'qeval always-true)
+  (put 'unique 'qeval uniquely-asserted)
   (deal-out rules-and-assertions '() '()))
 
 ;; Do following to reinit the data base from microshaft-data-base
@@ -652,8 +667,38 @@
       (or (supervisor ?staff-person ?boss)
           (and (supervisor ?staff-person ?middle-manager)
                (outranked-by ?middle-manager ?boss))))
+
+(rule (append-to-form () ?y ?y))
+
+(rule (append-to-form (?u . ?v) ?y (?u . ?z))
+      (append-to-form ?v ?y ?z))
+;---------------4.63--------------------------
+(son Adam Cain)
+(son Cain Enoch)
+(son Enoch Irad)
+(son Irad Mehujael)
+(son Mehujael Methushael)
+(son Methushael Lamech)
+(wife Lamech Ada)
+(son Ada Jabal)
+(son Ada Jubal)
+;----------------------------------------------
 ))
 
+;;--------4.60-----------add-to-file-------------
+(define (accumulate op initial sequence)
+  (if (null? sequence)
+      initial
+      (op (car sequence)
+          (accumulate op initial (cdr sequence)))))
+
+(define (symbol-list->string person)
+  (accumulate string-append "" (map symbol->string person)))
+
+(define (symbol-list>? person1 person2)
+  (string>? (symbol-list->string person1)
+            (symbol-list->string person2)))
+;;-----------------------------------------------------
 
 (initialize-data-base microshaft-data-base)
 (query-driver-loop)
