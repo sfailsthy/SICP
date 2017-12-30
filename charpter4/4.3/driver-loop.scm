@@ -90,3 +90,5 @@
                      (procedure-body object)
                      '<procedure-env>))
       (display object)))
+
+(driver-loop)

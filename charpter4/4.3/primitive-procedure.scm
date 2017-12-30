@@ -74,6 +74,7 @@
 
         (list 'prime? prime?)
         (list 'distinct? distinct?)
+        (list 'memq memq)
         ; other primitive procedures
         ))
 
